@@ -24,8 +24,10 @@ function App() {
     setTotalYears(day + (month * 31) + (year * 365))
   }
   console.log(totalYears)
-  const years = Math.floor((totalDaysCurrent - totalYears)/365)
+  const years = Math.floor((totalDaysCurrent - totalYears) / 365)
   console.log(years)
+  const months = Math.floor(((totalDaysCurrent - totalYears) % 365) / 31)
+  console.log(months)
 
   return (
     <> 
@@ -67,7 +69,7 @@ function App() {
         />
       </div>
       <div className='block w-full rounded-md border-0 px3.5'>{years} years</div>
-      <div className='block w-full rounded-md border-0 px3.5'>{month} months</div>
+      <div className='block w-full rounded-md border-0 px3.5'>{months} months</div>
       <div className='block w-full rounded-md border-0 px3.5'>{day} days</div>
     </>
   )
