@@ -7,7 +7,10 @@ function App() {
   const [day, setDay] = useState()
   const [month, setMonth] = useState()
   const [year, setYear] = useState()
-  const [totalYears, setTotalYears] = useState(0)
+  // const [totalYears, setTotalYears] = useState(0)
+  const [days, setDays] = useState()
+  const [months, setMonths] = useState()
+  const [years, setYears] = useState()
 
   const d = new Date();
   const currentYear = d.getFullYear();
@@ -18,22 +21,42 @@ function App() {
   // console.log(currentDay)
 
   const totalDaysCurrent = (currentYear * 365) + (currentMonth * 31) + currentDay;
-  console.log(totalDaysCurrent)
+  // console.log(totalDaysCurrent)
 
-  function calTotal() {
-    setTotalYears(day + (month * 31) + (year * 365))
+  const totalYears = day + (month * 31) + (year * 365)
+  // console.log(totalYears)
+
+  // function calTotal() {
+  //   setTotalYears(day + (month * 31) + (year * 365))
+  // }
+  // console.log(totalYears)
+
+  function calBirth() {
+    setYears(Math.floor((totalDaysCurrent - totalYears) / 365))
+    setMonths(Math.floor(((totalDaysCurrent - totalYears) % 365) / 31))
+    setDays(Math.floor(((totalDaysCurrent - totalYears) % 365) % 31))
   }
-  console.log(totalYears)
-  const years = Math.floor((totalDaysCurrent - totalYears) / 365)
-  console.log(years)
-  const months = Math.floor(((totalDaysCurrent - totalYears) % 365) / 31)
-  console.log(months)
-  const days = Math.floor(((totalDaysCurrent - totalYears) % 365) % 31)
-  console.log(days)
+
+  // const years = Math.floor((totalDaysCurrent - totalYears) / 365)
+  // console.log(years)
+  // const months = Math.floor(((totalDaysCurrent - totalYears) % 365) / 31)
+  // console.log(months)
+  // const days = Math.floor(((totalDaysCurrent - totalYears) % 365) % 31)
+  // console.log(days)
+
+  const dateInput = `${year}/${month}/${day}`;
+  console.log(dateInput)
+  const dateObj = new Date(dateInput)
+  console.log(dateObj)
+  const currentDate = new Date()
+  console.log(currentDate)
+
+  
 
   return (
     <> 
-      <button onClick={calTotal}>Add</button>
+      <button onClick={calBirth}>Add</button>
+      <div>
       <div>
         <label>DAY</label>
         <input
@@ -70,9 +93,11 @@ function App() {
           className='block w-full rounded-md border-0 px3.5'
         />
       </div>
-      <div className='block w-full rounded-md border-0 px3.5'>{years} years</div>
-      <div className='block w-full rounded-md border-0 px3.5'>{months} months</div>
-      <div className='block w-full rounded-md border-0 px3.5'>{days} days</div>
+      <div>{dateObj > currentDate ? 'Must be a valid date' : ''}</div>
+      </div>
+      <div value={years} className='block w-full rounded-md border-0 px3.5'>{years} years</div>
+      <div value={months} className='block w-full rounded-md border-0 px3.5'>{months} months</div>
+      <div value={days} className='block w-full rounded-md border-0 px3.5'>{days} days</div>
     </>
   )
 }
