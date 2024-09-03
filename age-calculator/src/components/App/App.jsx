@@ -65,7 +65,7 @@ function App() {
           onInput={e => setDay(+e.target.value)}
           className='block w-full rounded-md border-0 px3.5'
         />
-        <div>{0 < day < 32 ? '' : 'Must be a valid day'}</div>
+        <div>{0 < day && day < 32 ? '' : 'Must be a valid day'}</div>
       </div>
       <div>
         <label>MONTH</label>
@@ -78,7 +78,7 @@ function App() {
           onInput={e => setMonth(+e.target.value)}
           className='block w-full rounded-md border-0 px3.5'
         />
-        <div>{0 < month < 13 ? '' : 'Must be a valid month'}</div>
+        <div>{0 < month && month < 13 ? '' : 'Must be a valid month'}</div>
       </div>
       <div>
         <label>Year</label>
