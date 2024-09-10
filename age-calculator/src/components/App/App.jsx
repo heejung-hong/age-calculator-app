@@ -22,14 +22,23 @@ function App() {
 
   const totalDaysCurrent = (currentYear * 365) + (currentMonth * 31) + currentDay;
   // console.log(totalDaysCurrent)
-
   const totalYears = day + (month * 31) + (year * 365)
   // console.log(totalYears)
 
-  // function calTotal() {
-  //   setTotalYears(day + (month * 31) + (year * 365))
-  // }
-  // console.log(totalYears)
+  const dateInput = `${year}/${month}/${day}`;
+  console.log(dateInput)
+  const dateObj = new Date(dateInput);
+  console.log(dateObj)
+  console.log(!isNaN(dateObj))
+  
+
+  function ErrorWhole() {
+    if (day === '' || month === '' || year === '') {
+      return ''
+    } else if (!isNaN(dateObj) === false) {
+      return 'Must be a valid date'
+    }
+  }
 
   function InvalidDay() {
     if (day === '') {
@@ -49,15 +58,13 @@ function App() {
     } else if (!(0 < month && month < 13)) {
       return 'Must be a valid month'
     }
-  }     
-
-  function ErrorWhole() {
+  } 
+  
+  function InvalidYear() {
     if (year === '') {
       return ''
     } else if (!year) {
       return 'This field is required'
-    } else if (isNaN(dateObj)) {
-      return 'Must be a valid date'
     } else if (dateObj > d) {
       return 'Must be in the past'
     } 
@@ -73,18 +80,6 @@ function App() {
     }
   }
 
-  // const years = Math.floor((totalDaysCurrent - totalYears) / 365)
-  // console.log(years)
-  // const months = Math.floor(((totalDaysCurrent - totalYears) % 365) / 31)
-  // console.log(months)
-  // const days = Math.floor(((totalDaysCurrent - totalYears) % 365) % 31)
-  // console.log(days)
-
-  const dateInput = `${year}/${month}/${day}`;
-  console.log(dateInput)
-  const dateObj = new Date(dateInput)
-  console.log(dateObj)
-
   return (
     <> 
       <div>
@@ -95,12 +90,11 @@ function App() {
           type='text'
           placeholder='DD'
           value={day}
-          onInput={e => setDay(+e.target.value)}
+          onChange={e => setDay(+e.target.value)}
           className='block w-full rounded-md border-0 px3.5'
         />
-        {/* <div>{0 < day && day < 32 ? '' : 'Must be a valid day'}</div>
-        <div>{!day ? 'This field is required' : ''}</div> */}
         <div><InvalidDay/></div>
+        <div><ErrorWhole/></div>
       </div>
       <div>
         <label>MONTH</label>
@@ -113,8 +107,6 @@ function App() {
           onInput={e => setMonth(+e.target.value)}
           className='block w-full rounded-md border-0 px3.5'
         />
-        {/* <div>{0 < month && month < 13 ? '' : 'Must be a valid month'}</div>
-        <div>{!month ? 'This field is required' : ''}</div> */}
         <div><InvalidMonth/></div>
       </div>
       <div>
@@ -128,10 +120,7 @@ function App() {
           onInput={e => setYear(+e.target.value)}
           className='block w-full rounded-md border-0 px3.5'
         />
-        {/* <div>{dateObj > d ? 'Must be in the past' : ''}</div>
-        <div>{!year ? 'This field is required' : ''}</div> */}
-        {/* <div>{isNaN(dateObj) ? 'Must be a valid date' : ''}</div> */}
-        <div><ErrorWhole/></div>
+        <div><InvalidYear/></div>
       </div>
       <button onClick={calBirth}>Add</button>
       <div value={years} className='block w-full rounded-md border-0 px3.5'>{years} years</div>
