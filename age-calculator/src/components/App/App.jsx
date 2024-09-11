@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-
+import arrow from '../../assets/arrow.svg'
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
   function ErrorWhole() {
     if (day === '' || month === '' || year === '') {
       return ''
-    } else if (!isNaN(dateObj) === false) {
+    } else if (!isNaN(dateObj) === false || dateInput === `${year}/4/31` || dateInput === `${year}/6/31` || dateInput === `${year}/9/31` || dateInput === `${year}/11/31` || dateInput === `${year}/2/30` || dateInput === `${year}/2/31`) {
       return 'Must be a valid date'
     }
   }
@@ -82,50 +82,85 @@ function App() {
 
   return (
     <> 
-      <div>
-        <label>DAY</label>
-        <input
-          id='day'
-          name='day'
-          type='text'
-          placeholder='DD'
-          value={day}
-          onChange={e => setDay(+e.target.value)}
-          className='block w-full rounded-md border-0 px3.5'
-        />
-        <div><InvalidDay/></div>
-        <div><ErrorWhole/></div>
+      <div className='bg-white w-[840px] h-[680px] p-[56px] rounded-t-[40px] rounded-bl-[40px] rounded-br-[200px]'>
+        <div className='flex flex-row'>
+          <div className='w-[160px] h-[130px] mr-[32px]'>
+            <div className='font-semibold text-s text-zinc-500 text-left'>DAY</div>
+            <input
+              id='day'
+              name='day'
+              type='text'
+              placeholder='DD'
+              value={day}
+              onChange={e => setDay(+e.target.value)}
+              className='w-[160px] h-[72px] border border-zinc-500 rounded-md my-[10px] pl-[20px] font-bold text-3xl align-middle'
+            />
+            <div className='text-s italic text-rose-500 text-left'><InvalidDay/></div>
+            <div className='text-s italic text-rose-500 text-left'><ErrorWhole/></div>
+          </div>
+          <div className='w-[160px] h-[130px] mr-[32px]'>
+            <div className='font-semibold text-s text-zinc-500 text-left'>MONTH</div>
+            <input
+              id='month'
+              name='month'
+              type='text'
+              placeholder='MM'
+              value={month}
+              onInput={e => setMonth(+e.target.value)}
+              className='w-[160px] h-[72px] border border-zinc-500 rounded-md my-[10px] pl-[20px] font-bold text-3xl align-middle'
+            />
+            <div className='text-s italic text-rose-500 text-left'><InvalidMonth/></div>
+          </div>
+          <div className='w-[160px] h-[130px]'>
+            <div className='font-semibold text-s text-zinc-500 text-left'>Year</div>
+            <input
+              id='year'
+              name='year'
+              type='text'
+              placeholder='YYYY'
+              value={year}
+              onInput={e => setYear(+e.target.value)}
+              className='w-[160px] h-[72px] border border-zinc-500 rounded-md my-[10px] pl-[20px] font-bold text-3xl align-middle'
+            />
+            <div className='text-s italic text-rose-500 text-left'><InvalidYear/></div>
+          </div>
+        </div>
+        <div className='flex flex-row w-[728px] h-[96px] items-center'>
+          <div className='w-[632px] h-[1px] border border-zinc-300'></div>
+          <button 
+            onClick={calBirth}
+            className='bg-black w-[96px] h-[96px] rounded-full'
+          >
+            <img 
+              src={arrow}
+              className='m-auto'
+            ></img>
+          </button>
+        </div>
+        <div className='w-[728px] h-[342px]'>
+          <div className='flex flex-row w-[728px] h-[114px] content-center'>
+            <div 
+              value={years} 
+              className='w-[138px] h-[114px] text-8xl font-bold text-violet-600 italic text-left'>{years}
+            </div>
+            <div className='w-[413px] h-[114px] text-8xl font-bold text-black italic text-left'>&nbsp;years</div>
+          </div>
+          <div className='flex flex-row w-[728px] h-[114px]'>
+            <div 
+              value={months} 
+              className='w-[138px] h-[114px] text-8xl font-bold text-violet-600 italic text-left'>{months}
+            </div>
+            <div className='w-[413px] h-[114px] text-8xl font-bold text-black italic text-left'>&nbsp;months</div>
+          </div>
+          <div className='flex flex-row w-[728px] h-[114px]'>
+            <div 
+              value={days} 
+              className='w-[138px] h-[114px] text-8xl font-bold text-violet-600 italic text-left'>{days}
+            </div>
+            <div className='w-[413px] h-[114px] text-8xl font-bold text-black italic text-left'>&nbsp;days</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <label>MONTH</label>
-        <input
-          id='month'
-          name='month'
-          type='text'
-          placeholder='MM'
-          value={month}
-          onInput={e => setMonth(+e.target.value)}
-          className='block w-full rounded-md border-0 px3.5'
-        />
-        <div><InvalidMonth/></div>
-      </div>
-      <div>
-        <label>Year</label>
-        <input
-          id='year'
-          name='year'
-          type='text'
-          placeholder='YYYY'
-          value={year}
-          onInput={e => setYear(+e.target.value)}
-          className='block w-full rounded-md border-0 px3.5'
-        />
-        <div><InvalidYear/></div>
-      </div>
-      <button onClick={calBirth}>Add</button>
-      <div value={years} className='block w-full rounded-md border-0 px3.5'>{years} years</div>
-      <div value={months} className='block w-full rounded-md border-0 px3.5'>{months} months</div>
-      <div value={days} className='block w-full rounded-md border-0 px3.5'>{days} days</div>
     </>
   )
 }
