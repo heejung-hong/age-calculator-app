@@ -71,7 +71,7 @@ function App() {
       return "";
     } else if (!year) {
       return "This field is required";
-    } else if (dateObj > d) {
+    } else if (year > currentYear) {
       return "Must be in the past";
     }
   }
@@ -91,8 +91,12 @@ function App() {
       <div className="bg-white w-[343px] h-[486px] lg:w-[840px] lg:h-[680px] p-[25px] lg:p-[56px] rounded-t-[25px] lg:rounded-t-[40px] rounded-bl-[25px] lg:rounded-bl-[40px] rounded-br-[100px] lg:rounded-br-[200px]">
         <div className="flex flex-row mt-[20px] mb-[25px] lg:mt-0 lg:mb-[10px]">
           <div className="w-[88px] h-[88px] lg:w-[160px] lg:h-[130px] mr-[15px] lg:mr-[32px]">
-            <div className="font-semibold text-s text-zinc-500 text-left">
-              DAY
+            <div className="font-semibold text-s text-left">
+              {InvalidDay() || ErrorWhole() ? (
+                <span className=" text-rose-500">DAY</span>
+              ) : (
+                <span className=" text-zinc-500 ">DAY</span>
+              )}
             </div>
             <input
               id="day"
@@ -103,16 +107,17 @@ function App() {
               onChange={(e) => setDay(+e.target.value)}
               className="w-[88px] h-[54px] lg:w-[160px] lg:h-[72px] border border-zinc-500 focus:border-purple-600 rounded-md my-[10px] pl-[10px] lg:pl-[20px] font-bold text-2xl lg:text-3xl  align-middle marker"
             />
-            <div className="text-s italic text-rose-500 text-left">
-              <InvalidDay />
-            </div>
-            <div className="text-s italic text-rose-500 text-left">
-              <ErrorWhole />
+            <div className="text-xs lg:text-sm italic text-rose-500 text-left">
+              {InvalidDay() ? <InvalidDay /> : <ErrorWhole />}
             </div>
           </div>
           <div className="w-[88px] h-[88px] lg:w-[160px] lg:h-[130px] mr-[15px] lg:mr-[32px]">
-            <div className="font-semibold text-s text-zinc-500 text-left">
-              MONTH
+            <div className="font-semibold text-s text-left">
+              {InvalidMonth() || ErrorWhole() ? (
+                <span className=" text-rose-500">MONTH</span>
+              ) : (
+                <span className=" text-zinc-500 ">MONTH</span>
+              )}
             </div>
             <input
               id="month"
@@ -123,13 +128,17 @@ function App() {
               onInput={(e) => setMonth(+e.target.value)}
               className="w-[88px] h-[54px] lg:w-[160px] lg:h-[72px] border border-zinc-500 rounded-md my-[10px] pl-[10px] lg:pl-[20px] font-bold text-2xl lg:text-3xl align-middle"
             />
-            <div className="text-s italic text-rose-500 text-left">
+            <div className="text-xs lg:text-sm italic text-rose-500 text-left">
               <InvalidMonth />
             </div>
           </div>
           <div className="w-[88px] h-[88px] lg:w-[160px] lg:h-[130px] mr-[15px] lg:mr-[32px]">
-            <div className="font-semibold text-s text-zinc-500 text-left">
-              YEAR
+            <div className="font-semibold text-s text-left">
+              {InvalidYear() || ErrorWhole() ? (
+                <span className=" text-rose-500">YEAR</span>
+              ) : (
+                <span className=" text-zinc-500 ">YEAR</span>
+              )}
             </div>
             <input
               id="year"
@@ -140,7 +149,7 @@ function App() {
               onInput={(e) => setYear(+e.target.value)}
               className="w-[88px] h-[54px] lg:w-[160px] lg:h-[72px] border border-zinc-500 rounded-md my-[10px] pl-[10px] lg:pl-[20px] font-bold text-2xl lg:text-3xl align-middle"
             />
-            <div className="text-s italic text-rose-500 text-left">
+            <div className="text-xs lg:text-sm italic text-rose-500 text-left">
               <InvalidYear />
             </div>
           </div>
@@ -149,7 +158,7 @@ function App() {
           <div className="w-[295px] lg:w-[632px] h-[1px] border border-zinc-300 relative lg:static"></div>
           <button
             onClick={calBirth}
-            className="bg-black focus:bg-purple-600 w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] z-10 lg:z-0 absolute lg:static top-[3%] left-[40%] rounded-full"
+            className="bg-purple-600 hover:bg-black w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] z-10 lg:z-0 absolute lg:static top-[3%] left-[40%] rounded-full border-none"
           >
             <img src={arrow} className="m-auto"></img>
           </button>
