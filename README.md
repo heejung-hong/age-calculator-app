@@ -36,12 +36,20 @@ Users should be able to:
 
 #### Desktop View
 
+![Screenshot 2024-09-29 at 1 51 44 PM](https://github.com/user-attachments/assets/024a1c54-3d5c-4373-8a15-856a94e2bef0)  ![Screenshot 2024-09-29 at 1 52 09 PM](https://github.com/user-attachments/assets/00c75034-6929-45c8-9a0e-f361cfe9e7ce)
+
+![Screenshot 2024-09-29 at 1 53 21 PM](https://github.com/user-attachments/assets/ceb3760f-7a18-416f-9295-4135dacecaa0)  ![Screenshot 2024-09-29 at 1 56 00 PM](https://github.com/user-attachments/assets/1e420b30-d6f6-4b0a-a77a-38b97ac59e3a)
+
+![Screenshot 2024-09-29 at 1 53 41 PM](https://github.com/user-attachments/assets/3657e56c-622b-4603-b0c8-aec25023f078)
+
 #### Mobile View
+
+![Screenshot 2024-09-26 at 1 15 42 PM](https://github.com/user-attachments/assets/71b70c9d-061f-47d9-a43b-eacde0ee36d0)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL here](https://github.com/heejung-hong/age-calculator-app)
+- [Age Calculator Live Site URL here](https://heejung-hong.github.io/age-calculator-app/))
 
 ## My process
 
